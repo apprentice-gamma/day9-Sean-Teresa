@@ -1,45 +1,77 @@
 var sget = require('sget');
 
 function restart () {
-	var typeOfCalculation = sget("\nWhat do you want to do \n1 - Addition \n2 - Subtraction \n3 - Multiplication \n4 - Division \n5 - Square Root \nOr type 'quit' to quit -?").trim();
-	if (typeOfCalculation === "1") {
-		var userNumOne = checkInput(sget('\nEnter number:'));
-		var userNumTwo = checkInput(sget('\nEnter second number:'));
-	  console.log("\nThe total is: ", addition(Number(userNumOne), Number(userNumTwo)));
-	  console.log("--------------------------");
-		restart();
-	} else if (typeOfCalculation === "2") {
-			var userNumOne = checkInput(sget('\nEnter number to subtract from:'));
-			var userNumTwo = checkInput(sget('\nEnter subtracting number:'));
-		console.log("\nThe total is: ", subtraction(Number(userNumOne), Number(userNumTwo)));
-	  console.log("--------------------------");
-		restart();
-	} else if (typeOfCalculation === "3") {
-			var userNumOne = checkInput(sget('\nEnter number:'));
-			var userNumTwo = checkInput(sget('\nEnter second number:'));
-		console.log("\nThe total is: ", multiplication(Number(userNumOne), Number(userNumTwo)));
-	  console.log("--------------------------");
-		restart();
-	} else if (typeOfCalculation === "4") {
-			var userNumOne = checkInput(sget('\nEnter dividend:'));
-			var userNumTwo = checkInput(sget('\nEnter diviser:'));
-		console.log("\nThe total is: ", division(Number(userNumOne), Number(userNumTwo)));
-	  console.log("--------------------------");
-		restart();
-	} else if (typeOfCalculation === "5") {
-			var userNumOne = checkInput(sget('\nEnter number:'));
-		console.log("\nThe total is: ", squareRoot(Number(userNumOne)));
-	  console.log("--------------------------");
-		restart();
-	} else if (typeOfCalculation === "quit") {
+
+	var userNumOne, userNumTwo;
+	var typeOfCalculation = parseInt(sget("\nWhat do you want to do? \n1 - Addition \n2 - Subtraction \n3 - Multiplication \n4 - Division \n5 - Square Root \nOr type 'quit' to quit ").trim());
+	switch (typeOfCalculation) {
+		case 1:
+			startAddition(userNumOne, userNumTwo);
+			break;
+		case 2:
+			startSubtraction(userNumOne, userNumTwo);
+			break;
+		case 3:
+			startMultiplication(userNumOne, userNumTwo);
+			break;
+		case 4:
+			startDivision(userNumOne,userNumTwo);
+			break;
+		case 5:
+			startSquareRoot(userNumOne);
+			break;
+		case 'quit':
 			quit();
+			break;
+		default:
+			console.log("Not a valid entry. Try again");
+			restart();
 	}
+}
+
+function startAddition(numOne, numTwo) {
+	userNumOne = checkInput(sget('\nEnter number:'));
+	userNumTwo = checkInput(sget('\nEnter second number:'));
+  	console.log("\nThe total is: ", addition(Number(userNumOne), Number(userNumTwo)));
+	console.log("\n--------------------------");
+	quit();
+}
+
+function startSubtraction(numOne, numTwo) {
+	userNumOne = checkInput(sget('\nEnter number to subtract from:'));
+	userNumTwo = checkInput(sget('\nEnter subtracting number:'));
+	console.log("\nThe total is: ", subtraction(Number(userNumOne), Number(userNumTwo)));
+	console.log("\n--------------------------");
+	quit();
+}
+
+function startMultiplication(numOne, numTwo) {
+	userNumOne = checkInput(sget('\nEnter number:'));
+	userNumTwo = checkInput(sget('\nEnter second number:'));
+	console.log("\nThe total is: ", multiplication(Number(userNumOne), Number(userNumTwo)));
+	console.log("\n--------------------------");
+	quit();
+}
+
+function startDivision(numOne, numTwo) {
+	userNumOne = checkInput(sget('\nEnter dividend:'));
+	userNumTwo = checkInput(sget('\nEnter diviser:'));
+	console.log("\nThe total is: ", division(Number(userNumOne), Number(userNumTwo)));
+	console.log("\n--------------------------");
+	quit();
+}
+
+function startSquareRoot(numOne) {
+	userNumOne = checkInput(sget('\nEnter number:'));
+	console.log("\nThe total is: ", squareRoot(Number(userNumOne)));
+	console.log("\n--------------------------");
+	quit();
 }
 
 function checkInput (num) {
 	if (isNaN(num)) {
 		console.log("\nThis is not a valid entry. Please try again.");
-		console.log("--------------------------");
+		console.log("\n--------------------------");
 		restart();
 	} else if (!isNaN(num)) {
 		return num;
@@ -72,10 +104,10 @@ function squareRoot(numOne) {
 }
 
 function quit () {
-	var userInput = sget("Would you like to quit y/n").trim();
-	if (userInput === 'y') {
+	var userInput = sget("\nWould you like to 'quit' or 'restart'").trim().toLowerCase();
+	if (userInput === 'quit') {
 		process.exit(0);
-	} else if (userInput ==='n') {
+	} else if (userInput ==='restart') {
 		restart();
 	} else {
 		console.log("Not a valid entry.");

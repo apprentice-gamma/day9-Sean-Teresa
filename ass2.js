@@ -1,20 +1,26 @@
 var sget = require('sget');
 
-function checkPalindrom() {
+function checkPalindrome() {
 
     var userInput = sget('Please enter a word to be checked as a Palindrome:').trim();
-    console.log(userInput.split('').reverse().join('').toLowerCase());
-    return userInput == userInput.split('').reverse().join('').toLowerCase();
+    var word = removeNonLetters(userInput);
+    return word == word.reverse();
 
 }
 
-var isPalindrom = checkPalindrom();
+function removeNonLetters(word){
+	var input = word.replace(/\W/g, "").toLowerCase().split("");
+	console.log(input);
+	return input;
+}
+
+var isPalindrom = checkPalindrome();
 
 if (isPalindrom === true) {
 	console.log ('This is a Palindrome!');
 } else if (isPalindrom === false) {
 	console.log ('This is not a Palindrome.');
 } else {
-	console.log ('Please enter in valid entry.');
-	checkPalindrom();
+	console.log ('Please enter a valid entry.');
+	checkPalindrome();
 }

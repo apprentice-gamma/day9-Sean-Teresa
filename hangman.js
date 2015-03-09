@@ -1,5 +1,5 @@
 var sget = require('sget');
-var possibleWords = ["sesquipedalian", "vociferous", "limericks", "pantaloons", "arachnophobia"];
+var possibleWords = ["gorgeousness","quantize","sasquatch","cantelope","phalanges","euthanization","moribund","melancholia","sesquipedalian", "vociferous", "limericks", "pantaloons", "arachnophobia"];
 var keyWord = chooseKeyword();
 var guessedWord;
 var guesses = new Array;
@@ -9,7 +9,7 @@ var clear = require('clear');
 
 function chooseKeyword(){
 	var chooser = Math.random()
-	chooser = Math.round(chooser* (possibleWords.length+1));
+	chooser = Math.round(chooser * (possibleWords.length));
 	return possibleWords[chooser];
 }
 
@@ -21,7 +21,7 @@ function gameMenu(){
 	console.log("Please select a choice from the menu:");
 	console.log("1) Make a guess");
 	console.log("2) Get a hint");
-	console.log("3) See guessed letters");
+	console.log("3) Check status");
 	console.log("4) Give up at life");
 	console.log("---------------------");
 	
@@ -43,6 +43,7 @@ function gameMenu(){
 			break;
 		default:
 			console.log("Please enter a number!");
+			toContinue();
 			gameMenu();
 	}
 }
@@ -56,9 +57,12 @@ function displayStatus(){
 	console.log("-------------");
 	console.log("Your status:");
 	console.log("-------------");
+	
 	displayGuessedWord();
 	displayGuesses();
+	
 	checkWin();
+	
 	toContinue();
 	gameMenu();
 }
@@ -138,7 +142,7 @@ function guessedCorrectly(guess, i){
 	//console.log(i);
 	
 	guessedWord[i] = guess;
-	console.log("You guessed correctly!");		
+	console.log("Your guess matches letter #"+(i+1);		
 }
 
 function guessedWrong(){
@@ -151,9 +155,11 @@ function addToGuesses(guess){
 }
 
 function giveHint(){
+	
 	clear();
+	
 	if (hints>0){
-		console.log(pickHint());
+		console.log("The word contains at least one '"+pickHint()+"'.");
 	}
 	
 	else{

@@ -1,10 +1,17 @@
 var sget = require('sget');
-var keyWord = "sesquipedalian";
-var guessedWord = new Array(keyWord.length);
+var possibleWords = ["sesquipedalian", "vociferous", "limericks", "pantaloons", "arachnophobia"];
+var keyWord = chooseKeyword();
+var guessedWord;
 var guesses = new Array;
-var guessesLeft = 8;
+var guessesLeft = 7;
 var hints = 2;
 var clear = require('clear');
+
+function chooseKeyword(){
+	var chooser = Math.random()
+	chooser = Math.round(chooser* (possibleWords.length+1));
+	return possibleWords[chooser];
+}
 
 function gameMenu(){
 
@@ -31,6 +38,7 @@ function gameMenu(){
 			displayStatus();
 			break;
 		case 4:
+			console.log("Goodbye!");
 			process.exit(0);
 			break;
 		default:
@@ -167,4 +175,6 @@ function pickHint(){
 
 
 //setGuessedWord(keyWord, guessedWord);
+keyWord = chooseKeyword();
+guessedWord = new Array(keyWord.length);
 gameMenu();

@@ -103,8 +103,15 @@ function checkWin(){
 function guessLetter(){
 	clear();
 	var guess = sget("Enter your guess: ").trim().toLowerCase();
-	//if (guess.length > 1)
-	//	guessLetter();
+	var notWord = /\W+/;
+	if (notWord.test(guess){
+		console.log("Please enter a single letter!");
+		toContinue();
+		guessLetter();
+	}
+
+	console.log(guess.charAt(1));
+
 	checkLetter(guess);
 }
 
@@ -142,7 +149,7 @@ function guessedCorrectly(guess, i){
 	//console.log(i);
 	
 	guessedWord[i] = guess;
-	console.log("Your guess matches letter #"+(i+1);		
+	console.log("Your guess matches letter #"+(i+1));		
 }
 
 function guessedWrong(){

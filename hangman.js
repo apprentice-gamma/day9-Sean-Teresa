@@ -103,7 +103,7 @@ function checkWin(){
 function guessLetter(){
 	clear();
 	var guess = sget("Enter your guess: ").trim().toLowerCase();
-	var notWord = /\W+/;
+	var notWord = /\W+|\d+/;
 	if (notWord.test(guess) || guess.split('').length>1){
 		console.log("Please enter a single letter!");
 		toContinue();

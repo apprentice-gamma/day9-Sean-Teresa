@@ -104,7 +104,7 @@ function guessLetter(){
 	clear();
 	var guess = sget("Enter your guess: ").trim().toLowerCase();
 	var notWord = /\W+/;
-	if (notWord.test(guess)){
+	if (notWord.test(guess) || guess.charAt(1)!=undefined){
 		console.log("Please enter a single letter!");
 		toContinue();
 		guessLetter();
